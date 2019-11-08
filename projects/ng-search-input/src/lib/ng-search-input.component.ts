@@ -9,22 +9,28 @@ export class NgSearchInputComponent implements OnInit {
 
   private innerSearchTerm: string;
 
-  get SearchTerm(): string {
+  get searchTerm(): string {
     return this.innerSearchTerm;
   }
 
-  @Input() set SearchTerm(value: string) {
+  @Input() set searchTerm(value: string) {
     if (value !== this.innerSearchTerm) {
       this.innerSearchTerm = value;
-      this.SearchTermChange.emit(value);
+      this.searchTermChange.emit(value);
     }
   }
 
-  @Output() SearchTermChange: EventEmitter<string> = new EventEmitter<string>();
+  @Output() searchTermChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output() goSearch: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public clickSearch(): void {
+    this.goSearch.emit();
   }
 
 }
